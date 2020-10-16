@@ -18,8 +18,8 @@ plot(cumsum(cash), main='Cash without commission fee')
 
 # Take into account commission fee being 0.1425.
 # Commission fee is rebated by 50%.
-# Seller must also pay 30% government tax.
+# Seller must also pay 0.3% government tax.
 buy_in <- Op(stock) * (1 + 0.1425 * 0.5)
-sell_out <- Cl(stock) * (1 - 0.1425 * 0.5 - 0.3)
+sell_out <- Cl(stock) * (1 - 0.1425 * 0.5 - 0.003)
 cash <- sell_out - buy_in
 plot(cumsum(cash), main='Cash with commission fee')
