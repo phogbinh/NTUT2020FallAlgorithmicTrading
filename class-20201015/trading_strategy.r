@@ -35,8 +35,8 @@ PL <- setNames( numeric( nrow(stock) ), rownames(stock) )
 
 time <- proc.time()
 for ( m in 2:nrow(stock) ) {
-    cur_open = stock[m, 1]
-    cur_close = stock[m, 4]
+    cur_open <- stock[m, 1]
+    cur_close <- stock[m, 4]
     PL[m] <- cur_close - cur_open
 }
 proc.time() - time
@@ -48,9 +48,9 @@ abline( h=0, col='green' )
 # Open buy close sell only when kai1_gao1.
 PL <- setNames( numeric( nrow(stock) ), rownames(stock) )
 for ( m in 2:nrow(stock) ) {
-    cur_open = stock[m, 1]
-    cur_close = stock[m, 4]
-    prev_close = stock[m - 1, 4]
+    cur_open <- stock[m, 1]
+    cur_close <- stock[m, 4]
+    prev_close <- stock[m - 1, 4]
     if (cur_open > prev_close) {
         PL[m] <- cur_close - cur_open
     }
@@ -62,9 +62,9 @@ abline( h=0, col='green' )
 # Open buy close sell only when kai1_di1.
 PL <- setNames( numeric( nrow(stock) ), rownames(stock) )
 for ( m in 2:nrow(stock) ) {
-    cur_open = stock[m, 1]
-    cur_close = stock[m, 4]
-    prev_close = stock[m - 1, 4]
+    cur_open <- stock[m, 1]
+    cur_close <- stock[m, 4]
+    prev_close <- stock[m - 1, 4]
     if (cur_open <= prev_close) {
         PL[m] <- cur_close - cur_open
     }
