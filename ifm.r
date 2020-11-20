@@ -62,12 +62,12 @@ par(new=T)
 plot(cum_pl, type='h', col='#e11d74', lwd=2, ylim=y_range)
 points( which(dd == 0), cummax(cum_pl)[ which(dd == 0) ], pch=4, col='#440047' )
 
-# Decision for today.
-msg
-
 # Test code.
 #View( cbind( as.numeric( clp ),
 #             as.numeric( hi_max ),
 #             as.numeric( lo_min ),
 #             as.numeric( lag(opp, -1) ),
 #             pl ) )
+
+# Decision for today.
+msg
