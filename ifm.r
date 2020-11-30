@@ -1,7 +1,38 @@
+# This code can only be run when you are connected to local network of National University of Technology (NTUT).
+library(jsonlite)
 library(quantmod)
+library(tidyquant)
 
 rm(list=ls())
 
+# Retrieve stock data.
+stock_id <- '2330'
+start_date <- ''
+end_date <- Sys.Date()
+api_token <- Sys.getenv('iLoveTradingLabStockDatabaseApiToken')
+api_url <- paste('http://140.124.93.179:5888/v1/history/stock?token=',
+                 api_token,
+                 '&symbol_id=',
+                 stock_id,
+                 '&data_column=STK.date,STK.o,STK.h,STK.l,STK.c,STK.v&start_date=',
+                 start_date,
+                 '&end_date=',
+                 end_date,
+                 sep='')
+stock <- as.data.frame( fromJSON(api_url) )
+time_vector <- as.POSIXct( strptime( stock[, 1], "%Y-%m-%d",
+                                     tz=Sys.timezone() ) )
+stock <- xts( cbind( as.numeric( stock[, 2] ),
+                     as.numeric( stock[, 3] ),
+                     as.numeric( stock[, 4] ),
+                     as.numeric( stock[, 5] ),
+                     as.numeric( stock[, 6] ) ),
+              time_vector )
+colnames(stock) <- c('open', 'high', 'low', 'close', 'volume')
+View(stock)
+chartSeries(stock)
+
+# Strategy.
 HI_MAX_D <- 5
 LO_MIN_D <- 3
 M_START <- max(HI_MAX_D, LO_MIN_D) + 1
@@ -17,7 +48,6 @@ short <- function(price) {
 }
 
 # Prepare data.
-stock <- na.omit(get(getSymbols('2330.TW')))
 opp <- Op(stock) # [op]en [p]rices
 clp <- Cl(stock) # [cl]ose [p]rices
 hi_max <- lag( runMax( Hi(stock), HI_MAX_D) )
