@@ -33,8 +33,8 @@ View(stock)
 chartSeries(stock)
 
 # Strategy.
-HI_MAX_D <- 5
-LO_MIN_D <- 3
+HI_MAX_D <- 3
+LO_MIN_D <- 5
 M_START <- max(HI_MAX_D, LO_MIN_D) + 1
 
 # Transaction commission fee is 0.1425%.
@@ -56,19 +56,23 @@ yesterday <- nrow(stock) - 1
 
 # Execute the strategy.
 pl <- setNames( rep( 0, length(clp) ), time(stock) )
-is_bought <- FALSE
+bought <- 0
+bought_n <- 0
 msg <- 'DO NOTHING!'
 for (m in M_START:yesterday) {
-    if (!is_bought && clp[m] < lo_min[m]) {
-        bought <- long( as.numeric( opp[m+1] ) )
-        is_bought <- TRUE
+    if (clp[m] < lo_min[m]) {
+        to_bought_price <- as.numeric( opp[m+1] )
+        to_bought_n <- max( 1, as.integer( bought / to_bought_price ) )
+        bought <- bought + long( to_bought_price * to_bought_n )
+        bought_n <- bought_n + to_bought_n
         if (m == yesterday) {
             msg <- 'BUY!'
         }
     }
-    else if (is_bought && clp[m] > hi_max[m]) {
-        pl[m] <- short( as.numeric( opp[m+1] ) ) - bought
-        is_bought <- FALSE
+    if (clp[m] > hi_max[m]) {
+        pl[m] <- short( as.numeric( opp[m+1] ) * bought_n ) - bought
+        bought <- 0
+        bought_n <- 0
         if (m == yesterday) {
             msg <- 'SELL!'
         }
