@@ -66,7 +66,7 @@ for (m in M_START:yesterday) {
         bought <- bought + long( to_bought_price * to_bought_n )
         bought_n <- bought_n + to_bought_n
         if (m == yesterday) {
-            msg <- 'BUY!'
+            msg <- paste('BUY ', to_bought_n, '!', sep='')
         }
     }
     if (clp[m] > hi_max[m]) {
@@ -74,7 +74,7 @@ for (m in M_START:yesterday) {
         bought <- 0
         bought_n <- 0
         if (m == yesterday) {
-            msg <- 'SELL!'
+            msg <- 'SELL ALL!'
         }
     }
 }
