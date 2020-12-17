@@ -73,13 +73,6 @@ for (stock_id in stock_ids) {
     par(new=T)
     plot(cum_pl, type='h', col='#e11d74', lwd=2, ylim=y_range)
     points( which(dd == 0), cummax(cum_pl)[ which(dd == 0) ], pch=4, col='#440047' )
-    
-    # Test code.
-    #View( cbind( as.numeric( clp ),
-    #             as.numeric( hi_max ),
-    #             as.numeric( lo_min ),
-    #             as.numeric( lag(opp, -1) ),
-    #             pl ) )
 }
 
 View( cbind(stock_ids, win_rates, gain_rates, profit_factors, mdds, max_ddds) )
