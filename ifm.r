@@ -6,7 +6,8 @@ library(tidyquant)
 rm(list=ls())
 
 # Retrieve stock data.
-stock_id <- '2330'
+stocks = c('2330', '2454', '2317', '2308', '2303', '1301', '2412', '1303', '2891', '2882', '3008', '2881')
+for (stock_id in stocks) {
 start_date <- ''
 end_date <- Sys.Date()
 api_token <- Sys.getenv('iLoveTradingLabStockDatabaseApiToken')
@@ -29,8 +30,8 @@ stock <- xts( cbind( as.numeric( stock[, 2] ),
                      as.numeric( stock[, 6] ) ),
               time_vector )
 colnames(stock) <- c('open', 'high', 'low', 'close', 'volume')
-View(stock)
-chartSeries(stock)
+saveRDS(stock, stock_id)
+}
 
 # Strategy.
 HI_MAX_D <- 3
