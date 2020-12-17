@@ -32,24 +32,17 @@ for (stock_id in stock_ids) {
     pl <- setNames( rep( 0, length(clp) ), time(stock) )
     bought <- 0
     bought_n <- 0
-    msg <- 'DO NOTHING!'
     for (m in M_START:yesterday) {
         if (clp[m] < lo_min[m]) {
             to_bought_price <- as.numeric( opp[m+1] )
             to_bought_n <- max( 1, as.integer( bought / to_bought_price ) )
             bought <- bought + long( to_bought_price * to_bought_n )
             bought_n <- bought_n + to_bought_n
-            if (m == yesterday) {
-                msg <- paste('BUY ', to_bought_n, '!', sep='')
-            }
         }
         if (clp[m] > hi_max[m]) {
             pl[m] <- short( as.numeric( opp[m+1] ) * bought_n ) - bought
             bought <- 0
             bought_n <- 0
-            if (m == yesterday) {
-                msg <- 'SELL ALL!'
-            }
         }
     }
     
@@ -76,7 +69,4 @@ for (stock_id in stock_ids) {
     #             as.numeric( lo_min ),
     #             as.numeric( lag(opp, -1) ),
     #             pl ) )
-    
-    # Decision for today.
-    msg
 }
