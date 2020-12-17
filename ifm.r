@@ -4,6 +4,7 @@ library(quantmod)
 library(tidyquant)
 
 rm(list=ls())
+par(mfrow=c(3, 4))
 
 # Retrieve stock data.
 stocks = c('2330', '2454', '2317', '2308', '2303', '1301', '2412', '1303', '2891', '2882', '3008', '2881')
@@ -48,6 +49,8 @@ short <- function(price) {
     return(price * (1 - 0.001425 - 0.003))
 }
 
+for (stock_id in stocks) {
+stock <- readRDS(stock_id)
 # Prepare data.
 opp <- Op(stock) # [op]en [p]rices
 clp <- Cl(stock) # [cl]ose [p]rices
@@ -106,3 +109,4 @@ points( which(dd == 0), cummax(cum_pl)[ which(dd == 0) ], pch=4, col='#440047' )
 
 # Decision for today.
 msg
+}
