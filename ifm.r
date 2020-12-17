@@ -18,8 +18,8 @@ short <- function(price) {
     return(price * (1 - 0.001425 - 0.003))
 }
 
-stocks <- scan("stock_ids", character(), quote = "")
-for (stock_id in stocks) {
+stock_ids <- scan("stock_ids", character(), quote = "")
+for (stock_id in stock_ids) {
 stock <- readRDS(stock_id)
 # Prepare data.
 opp <- Op(stock) # [op]en [p]rices
