@@ -19,6 +19,11 @@ short <- function(price) {
 }
 
 stock_ids <- scan("stock_ids", character(), quote = "")
+win_rates <- vector()
+gain_rates <- vector()
+profit_factors <- vector()
+mdds <- vector()
+max_ddds <- vector()
 for (stock_id in stock_ids) {
     stock <- readRDS(stock_id)
     # Prepare data.
@@ -54,7 +59,13 @@ for (stock_id in stock_ids) {
     dd <- cum_pl - cummax(cum_pl) # [d]raw[d]own
     mdd <- mean(dd)
     max_ddd <- max( diff( which(dd==0) ) ) # [max]imum [d]raw[d]own [d]uration
-    View( cbind(win_rate, gain_rate, profit_factor, mdd, max_ddd) )
+    
+    # Update assessments.
+    win_rates <- c(win_rates, win_rate)
+    gain_rates <- c(gain_rates, gain_rate)
+    profit_factors <- c(profit_factors, profit_factor)
+    mdds <- c(mdds, mdd)
+    max_ddds <- c(max_ddds, max_ddd)
     
     # Plot the strategy.
     y_range <- range(dd, cum_pl)
@@ -70,3 +81,5 @@ for (stock_id in stock_ids) {
     #             as.numeric( lag(opp, -1) ),
     #             pl ) )
 }
+
+View( cbind(stock_ids, win_rates, gain_rates, profit_factors, mdds, max_ddds) )
