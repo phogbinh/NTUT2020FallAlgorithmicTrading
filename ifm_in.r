@@ -5,8 +5,8 @@ library(tidyquant)
 rm(list=ls())
 
 # Retrieve stock data.
-stocks <- scan("stock_ids", character(), quote = "")
-for (stock_id in stocks) {
+stock_ids <- scan("stock_ids", character(), quote = "")
+for (stock_id in stock_ids) {
     start_date <- ''
     end_date <- Sys.Date()
     api_token <- Sys.getenv('iLoveTradingLabStockDatabaseApiToken')
