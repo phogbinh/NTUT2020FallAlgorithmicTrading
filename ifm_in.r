@@ -30,5 +30,5 @@ for (stock_id in stock_ids) {
                          as.numeric( stock[, 6] ) ),
                   time_vector )
     colnames(stock) <- c('open', 'high', 'low', 'close', 'volume')
-    saveRDS(stock, stock_id)
+    saveRDS(stock, paste(stock_id, '.stk', sep=''))
 }
