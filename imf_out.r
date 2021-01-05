@@ -18,7 +18,7 @@ short <- function(price) {
     return(price * (1 - 0.001425 - 0.003))
 }
 
-stock_ids <- scan("stock_ids", character(), quote = "")
+stock_ids <- scan('stock_ids', character(), quote = '')
 win_rates <- vector()
 gain_rates <- vector()
 profit_factors <- vector()
