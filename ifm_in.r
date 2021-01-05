@@ -3,6 +3,7 @@ library(jsonlite)
 library(tidyquant)
 
 rm(list=ls())
+setwd(Sys.getenv('RWorkingDirectory'))
 
 # Retrieve stock data.
 stock_ids <- scan("stock_ids", character(), quote = "")
