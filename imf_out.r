@@ -1,6 +1,7 @@
 library(quantmod)
 
 rm(list=ls())
+setwd(Sys.getenv('RWorkingDirectory'))
 par(mfrow=c(3, 4))
 
 # Strategy.
