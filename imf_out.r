@@ -26,7 +26,7 @@ profit_factors <- vector()
 mdds <- vector()
 max_ddds <- vector()
 for (stock_id in stock_ids) {
-    stock <- readRDS(stock_id)
+    stock <- readRDS(paste(stock_id, '.stk', sep=''))
     # Prepare data.
     opp <- Op(stock) # [op]en [p]rices
     clp <- Cl(stock) # [cl]ose [p]rices
