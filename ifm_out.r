@@ -5,11 +5,6 @@ setwd(Sys.getenv('RWorkingDirectory'))
 source('ifm_sa.r')
 par(mfrow=c(3, 4))
 
-# Strategy.
-HI_MAX_D <- 3
-LO_MIN_D <- 5
-M_START <- max(HI_MAX_D, LO_MIN_D) + 1
-
 stock_ids <- scan('stock_ids', character(), quote = '')
 win_rates <- vector()
 gain_rates <- vector()

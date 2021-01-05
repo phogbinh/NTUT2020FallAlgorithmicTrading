@@ -1,6 +1,11 @@
 source('ifm_func.r')
 
 strategy <- function(stock) {
+    # Strategy.
+    HI_MAX_D <- 3
+    LO_MIN_D <- 5
+    M_START <- max(HI_MAX_D, LO_MIN_D) + 1
+    
     # Prepare data.
     opp <- Op(stock) # [op]en [p]rices
     clp <- Cl(stock) # [cl]ose [p]rices
