@@ -22,7 +22,7 @@ for (stock_id in stock_ids) {
     cum_pl <- cumsum(pl)
     dd <- cum_pl - cummax(cum_pl) # [d]raw[d]own
     mdd <- mean(dd)
-    max_ddd <- max( diff( which(dd==0) ) ) # [max]imum [d]raw[d]own [d]uration
+    max_ddd <- max( diff( which(dd == 0) ) ) # [max]imum [d]raw[d]own [d]uration
     
     # Update assessments.
     win_rates <- c(win_rates, win_rate)
