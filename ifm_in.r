@@ -6,7 +6,7 @@ rm(list=ls())
 setwd(Sys.getenv('RWorkingDirectory'))
 
 # Retrieve stock data.
-stock_ids <- scan("stock_ids", character(), quote = "")
+stock_ids <- scan('stock_ids', character(), quote = '')
 for (stock_id in stock_ids) {
     start_date <- ''
     end_date <- Sys.Date()
