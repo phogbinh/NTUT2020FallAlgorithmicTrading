@@ -2,7 +2,6 @@ library(quantmod)
 
 rm(list=ls())
 setwd(Sys.getenv('RWorkingDirectory'))
-source('ifm_func.r')
 source('ifm_sa.r')
 par(mfrow=c(3, 4))
 

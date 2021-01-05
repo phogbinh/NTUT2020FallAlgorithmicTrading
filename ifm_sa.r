@@ -1,3 +1,5 @@
+source('ifm_func.r')
+
 strategy <- function(stock) {
     # Prepare data.
     opp <- Op(stock) # [op]en [p]rices
