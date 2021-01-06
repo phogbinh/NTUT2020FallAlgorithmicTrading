@@ -2,10 +2,10 @@ source('ifm_func.r')
 
 # Long-term moving average is 17-day zero lag exponential moving average (ZLEMA)
 # of closing price of the given stock, while short-term moving average is 9-day.
-# When long-term moving average crosses above short-term moving average (not go-
-# lden cross), we buy in at opening price on the next day, and then hold to sell
-# out at opening price on the following day when long-term moving average cross-
-# es below short-term moving average (not death cross).
+# When short-term moving average crosses below long-term moving average (death
+# cross), we buy in at opening price on the next day, and then hold to sell out
+# at opening price on the following day when short-term moving average crosses
+# above long-term moving average (golden cross).
 strategy <- function(stock) {
     # Strategy.
     LMA_DAYS_N <- 17
