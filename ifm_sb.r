@@ -24,14 +24,14 @@ strategy <- function(stock) {
     is_bought <- FALSE
     for (m in M_START:yesterday) {
         if ( !is_bought
-          && as.numeric( lmap[m-1] ) <  as.numeric( smap[m-1] )
-          && as.numeric( lmap[m]   ) >= as.numeric( smap[m]   ) ) {
+          && as.numeric( smap[m-1] ) >  as.numeric( lmap[m-1] )
+          && as.numeric( smap[m]   ) <= as.numeric( lmap[m]   ) ) {
             bought <- long( as.numeric( opp[m+1] ) )
             is_bought <- TRUE
         }
         else if ( is_bought
-               && as.numeric( lmap[m-1] ) >  as.numeric( smap[m-1] )
-               && as.numeric( lmap[m]   ) <= as.numeric( smap[m]   ) ) {
+               && as.numeric( smap[m-1] ) <  as.numeric( lmap[m-1] )
+               && as.numeric( smap[m]   ) >= as.numeric( lmap[m]   ) ) {
             pl[m] <- -bought + short( as.numeric( opp[m+1] ) )
             is_bought <- FALSE
         }
