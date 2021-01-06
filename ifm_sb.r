@@ -1,5 +1,6 @@
 source('ifm_func.r')
 
+# Strategy B - countertrend trading:
 # Long-term moving average is 17-day zero lag exponential moving average (ZLEMA)
 # of closing price of the given stock, while short-term moving average is 9-day.
 # When short-term moving average crosses below long-term moving average (death
