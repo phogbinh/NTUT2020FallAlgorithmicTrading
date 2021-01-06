@@ -9,8 +9,8 @@ strategy <- function(stock) {
     # Prepare data.
     opp <- Op(stock) # [op]en [p]rices
     clp <- Cl(stock) # [cl]ose [p]rices
-    lmap <- ZLEMA(clp, n=LMA_DAYS_N) # [l]ong [m]oving [a]verage [p]rices
-    smap <- ZLEMA(clp, n=SMA_DAYS_N) # [s]hort [m]oving [a]verage [p]rices
+    lmap <- ZLEMA(clp, n=LMA_DAYS_N) # [l]ong-term [m]oving [a]verage [p]rices
+    smap <- ZLEMA(clp, n=SMA_DAYS_N) # [s]hort-term [m]oving [a]verage [p]rices
     yesterday <- nrow(stock) - 1
     
     # Execute the strategy.
