@@ -1,5 +1,12 @@
 source('ifm_func.r')
 
+# Strategy C - trend trading:
+# Long-term moving average is 56-day simple moving average (SMA) of closing pri-
+# ce of the given stock, while short-term moving average is 42-day exponential
+# moving average (EMA). When short-term moving average crosses above long-term
+# moving average (golden cross), we buy in at opening price on the next day, and
+# then hold to sell out at opening price on the following day when short-term m-
+# oving average crosses below long-term moving average (death cross).
 strategy <- function(stock) {
     # Strategy.
     LMA_DAYS_N <- 56
