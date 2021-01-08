@@ -1,5 +1,6 @@
 source('ifm_func.r')
 
+# Strategy D - trend trading:
 strategy <- function(stock) {
     # Strategy.
     STANDARD_DEVIATION_N <- 1.5
