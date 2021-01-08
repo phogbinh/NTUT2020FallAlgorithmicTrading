@@ -1,5 +1,6 @@
 source('ifm_func.r')
 
+# Strategy A - countertrend trading:
 strategy <- function(stock) {
     # Strategy.
     HI_MAX_D <- 3
