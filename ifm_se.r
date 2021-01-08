@@ -1,5 +1,6 @@
 source('ifm_func.r')
 
+# Strategy E - trend trading:
 strategy <- function(stock) {
     # Strategy.
     MA_TYPE <- 'SMA'
