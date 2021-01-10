@@ -11,14 +11,14 @@ source('ifm_func.r')
 # the upper band (death cross).
 strategy <- function(stock) {
     # Strategy.
-    STANDARD_DEVIATION_N <- 1.5
+    STANDARD_DEVIATION_MULTIPLIER <- 1.5
     MA_DAYS_N <- 190
     M_START <- MA_DAYS_N + 1
     
     # Prepare data.
     opp <- Op(stock) # [op]en [p]rices
     clp <- Cl(stock) # [cl]ose [p]rices
-    bbands <- BBands(clp, n=MA_DAYS_N, sd=STANDARD_DEVIATION_N) # [b]ollinger [bands]
+    bbands <- BBands(clp, n=MA_DAYS_N, sd=STANDARD_DEVIATION_MULTIPLIER) # [b]ollinger [bands]
     bbands_upp <- bbands[, 'up'] # [b]ollinger [bands] [up] [p]rices
     bbands_mip <- bbands[, 'mavg'] # [b]ollinger [bands] [mi]ddle [p]rices
     yesterday <- nrow(stock) - 1
