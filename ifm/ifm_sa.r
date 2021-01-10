@@ -35,7 +35,7 @@ strategy <- function(stock) {
             bought <- bought + long( to_bought_price * to_bought_n )
             bought_n <- bought_n + to_bought_n
         }
-        if ( as.numeric( clp[m] ) > as.numeric( hi_max[m] ) ) {
+        else if ( as.numeric( clp[m] ) > as.numeric( hi_max[m] ) ) {
             pl[m] <- -bought + short( as.numeric( opp[m+1] ) * bought_n )
             bought <- 0
             bought_n <- 0
