@@ -1,6 +1,13 @@
 source('ifm_func.r')
 
 # Strategy E - trend trading:
+# Moving Average Convergence Divergence (MACD) is used in the strategy, which is
+# calculated by subtracting the 90-day simple moving average (SMA) of closing p-
+# rice of the given stock from the 65-day counterpart. The MACD's signal line is
+# the 21-day SMA of itself. When the MACD crosses above its signal line (golden
+# cross), we buy in at opening price on the next day, and then hold to sell out
+# at opening price on the following day when the MACD crosses below its signal
+# line(death cross).
 strategy <- function(stock) {
     # Strategy.
     MA_TYPE <- 'SMA'
