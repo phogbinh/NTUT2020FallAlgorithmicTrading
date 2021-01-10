@@ -1,6 +1,16 @@
 source('ifm_func.r')
 
 # Strategy A - countertrend trading:
+# When the closing price of the given stock is strictly less than the lowest low
+# of the previous 5 days (not including today), if we haven't bought any shares
+# of the stock, we buy in 1,000 shares (1 trading unit in Taiwan, later referred
+# as 1 ticket) at opening price on the next day. Later each time this happens,
+# we take an amount equivalent to all the money having used to acquire the tick-
+# ets of the stock, and buy in as much as we can at opening price on the next d-
+# ay. When the closing price of the given stock is strictly greater than the hi-
+# ghest high of the previous 3 days (not including today), we sell out all of o-
+# ur tickets at opening price on the following day (note that we consider this
+# as resetting the money having used to acquire the tickets of the stock to 0).
 strategy <- function(stock) {
     # Strategy.
     HI_MAX_D <- 3
