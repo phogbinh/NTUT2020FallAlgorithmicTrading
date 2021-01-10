@@ -1,6 +1,14 @@
 source('ifm_func.r')
 
 # Strategy D - trend trading:
+# Bollinger bands are used in this strategy, which are the 190-day simple moving
+# average (SMA) of closing price of the given stock (which is now referred as t-
+# he middle band) and its upper (lower) bands calculated by adding to (subtract-
+# ing from) the middle band 1.5 of its standard deviation. When the closing pri-
+# ce of the given stock crosses above the middle band (golden cross), we buy in
+# at opening price on the next day, and then hold to sell out at opening price
+# on the following day when the closing price of the given stock crosses below
+# the upper band (death cross).
 strategy <- function(stock) {
     # Strategy.
     STANDARD_DEVIATION_N <- 1.5
