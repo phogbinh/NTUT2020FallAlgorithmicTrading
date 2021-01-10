@@ -20,8 +20,8 @@ strategy <- function(stock) {
     # Prepare data.
     opp <- Op(stock) # [op]en [p]rices
     clp <- Cl(stock) # [cl]ose [p]rices
-    hi_max <- lag( runMax( Hi(stock), HI_MAX_D ) )
-    lo_min <- lag( runMin( Lo(stock), LO_MIN_D ) )
+    hi_max <- lag( runMax( Hi(stock), HI_MAX_D ), k=1 )
+    lo_min <- lag( runMin( Lo(stock), LO_MIN_D ), k=1 )
     yesterday <- nrow(stock) - 1
     
     # Execute the strategy.
